@@ -1,4 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">DogApp</string>
-    <string name="tituloInventario">Inventario</string>
+    <string name="tituloInventario">Administrador</string>
+    <string name="tituloInventario2">de citas</string>
+    <string name="tituloApp">DogApp</string>
+    <string name="tituloAdd">Nueva Cita</string>
+    <string name="petNameHint">Nombre de la Mascota</string>
+    <string name="petBreedHint">Raza</string>ownerName
+    <string name="ownerNameHint">Nombre del Propietario</string>
+    <string name="phoneHint">Telefono</string>
+    <string name="sintomaHint">Sintoma</string>
+    <string name="btnSaveInventory">Guardar Cita</string>
 </resources>
