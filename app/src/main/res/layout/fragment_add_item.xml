@@ -154,68 +154,25 @@
                 android:textColorHint="@color/Grey" />
         </com.google.android.material.textfield.TextInputLayout>
 
+
         <AutoCompleteTextView
             android:id="@+id/autoCompleteSintomas"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Síntomas"
+            android:layout_width="372dp"
+            android:layout_height="52dp"
+            android:layout_marginTop="16dp"
+            android:background="@null"
             android:drawableEnd="@drawable/icono_sintoma"
             android:drawablePadding="0dp"
+            android:hint="Síntomas"
             android:inputType="none"
             android:paddingStart="10dp"
             android:paddingTop="20dp"
-            android:textSize="15sp"
             android:textColorHint="@color/black"
-            android:background="@null"
-            app:layout_constraintTop_toBottomOf="@id/phone"
+            android:textSize="15sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"/>
-
-        <EditText
-            android:id="@+id/etPrice"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:layout_gravity="center"
-            android:hint="Precio"
-            android:background="@drawable/bg_redondo"
-            android:padding="12dp"
-            android:inputType="number"
-            app:layout_constraintTop_toBottomOf="@id/btnSaveInventory"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"/>
-
-        <EditText
-            android:id="@+id/etQuantity"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:layout_gravity="center"
-            android:hint="Cantidad"
-            android:background="@drawable/bg_redondo"
-            android:padding="12dp"
-            android:inputType="number"
-            app:layout_constraintTop_toBottomOf="@id/etPrice"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"/>
-
-        <EditText
-            android:id="@+id/etName"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:layout_gravity="center"
-            android:hint="Nombre artículo"
-            android:background="@drawable/bg_redondo"
-            android:padding="12dp"
-            android:inputType="text"
-            android:maxLength="10"
-            app:layout_constraintTop_toBottomOf="@id/etQuantity"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"/>
-
-
-
+            app:layout_constraintTop_toBottomOf="@id/phone" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btnSaveInventory"

@@ -3,7 +3,16 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/homeInventoryFragment">
+    app:startDestination="@id/login">
+    <fragment
+        android:id="@+id/login"
+        android:name="com.univalle.dogapp.view.fragment.LoginFragment"
+        android:label="fragment_login"
+        tools:layout="@layout/fragment_login" >
+        <action
+            android:id="@+id/action_login_to_homeInventoryFragment"
+            app:destination="@id/homeInventoryFragment" />
+    </fragment>
 
     <fragment
         android:id="@+id/homeInventoryFragment"
@@ -43,4 +52,5 @@
             app:popUpTo="@+id/homeInventoryFragment"
             app:popUpToInclusive="true"/>
     </fragment>
+
 </navigation>
