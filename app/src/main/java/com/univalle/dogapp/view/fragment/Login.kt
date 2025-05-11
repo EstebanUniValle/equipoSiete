@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.biometric.BiometricPrompt
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
+import androidx.navigation.NavOptions
 import androidx.navigation.fragment.findNavController
 import com.univalle.dogapp.databinding.FragmentLoginBinding
 import java.util.concurrent.Executor
@@ -39,7 +40,15 @@ class LoginFragment : Fragment() {
                 override fun onAuthenticationSucceeded(result: BiometricPrompt.AuthenticationResult) {
                     super.onAuthenticationSucceeded(result)
                     // ✅ Éxito → navegar al Home
-                    findNavController().navigate(R.id.action_login_to_homeInventoryFragment)
+                    // Dentro de LoginFragment.kt, cuando la autenticación con huella sea exitosa
+                    findNavController().navigate(
+                        R.id.action_login_to_homeInventoryFragment,
+                        null,
+                        NavOptions.Builder()
+                            .setPopUpTo(R.id.login, true) // Esta línea elimina el login del stack
+                            .build()
+                    )
+
                 }
 
                 override fun onAuthenticationError(errorCode: Int, errString: CharSequence) {
