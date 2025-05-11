@@ -41,6 +41,7 @@ android {
 }
 
 dependencies {
+    implementation(libs.lottie)
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
@@ -50,6 +51,7 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
+    implementation(libs.androidx.biometric)
 
     //navigation
     implementation (libs.androidx.navigation.fragment.ktx)

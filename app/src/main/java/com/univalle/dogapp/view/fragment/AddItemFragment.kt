@@ -31,43 +31,43 @@ class AddItemFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        controladores()
+//        controladores()
 //        observerViewModel()
 
 
     }
 
-    private fun controladores() {
-        validarDatos()
-        binding.btnSaveInventory.setOnClickListener {
-            saveInvetory()
-        }
-    }
+//    private fun controladores() {
+//        validarDatos()
+//        binding.btnSaveInventory.setOnClickListener {
+//            saveInvetory()
+//        }
+//    }
 
-    private fun saveInvetory(){
-        val name = binding.etName.text.toString()
-        val price = binding.etPrice.text.toString().toInt()
-        val quantity = binding.etQuantity.text.toString().toInt()
-        val inventory = Inventory(name = name, price = price, quantity = quantity)
-        inventoryViewModel.saveInventory(inventory)
-        Log.d("test",inventory.toString())
-        Toast.makeText(context,"Artículo guardado !!", Toast.LENGTH_SHORT).show()
-        findNavController().popBackStack()
+//    private fun saveInvetory(){
+//        val name = binding.etName.text.toString()
+//        val price = binding.etPrice.text.toString().toInt()
+//        val quantity = binding.etQuantity.text.toString().toInt()
+//        val inventory = Inventory(name = name, price = price, quantity = quantity)
+//        inventoryViewModel.saveInventory(inventory)
+//        Log.d("test",inventory.toString())
+//        Toast.makeText(context,"Artículo guardado !!", Toast.LENGTH_SHORT).show()
+//        findNavController().popBackStack()
+//
+//    }
 
-    }
-
-    private fun validarDatos() {
-        val listEditText = listOf(binding.etName, binding.etPrice, binding.etQuantity)
-
-        for (editText in listEditText) {
-            editText.addTextChangedListener {
-                val isListFull = listEditText.all{
-                    it.text.isNotEmpty() // si toda la lista no está vacía
-                }
-                binding.btnSaveInventory.isEnabled = isListFull
-            }
-        }
-    }
+//    private fun validarDatos() {
+//        val listEditText = listOf(binding.etName, binding.etPrice, binding.etQuantity)
+//
+//        for (editText in listEditText) {
+//            editText.addTextChangedListener {
+//                val isListFull = listEditText.all{
+//                    it.text.isNotEmpty() // si toda la lista no está vacía
+//                }
+//                binding.btnSaveInventory.isEnabled = isListFull
+//            }
+//        }
+//    }
 
 
 //
