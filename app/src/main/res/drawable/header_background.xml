@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:drawable="@android:color/white" /> <!-- Fondo color blanco o el color que ya tienes -->
+    <item>
+        <shape
+            android:shape="rectangle">
+            <solid android:color="@color/Grey" />
+            <corners android:bottomLeftRadius="60dp" /> <!-- Esto crea el semicírculo -->
+        </shape>
+    </item>
+</layer-list>
