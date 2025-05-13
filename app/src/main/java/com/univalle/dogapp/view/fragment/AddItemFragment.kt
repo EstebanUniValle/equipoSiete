@@ -60,30 +60,42 @@ class AddItemFragment : Fragment() {
         val phone = binding.etPhone.text.toString()
         val symptom = binding.autoCompleteSintomas.text.toString()
 
-        // Validación simple
         if (symptom.isEmpty()) {
             Toast.makeText(requireContext(), "Selecciona un síntoma", Toast.LENGTH_SHORT).show()
             return
         }
 
-        // Llamada asincrónica para obtener la imagen
         viewLifecycleOwner.lifecycleScope.launch {
             try {
                 val imageUrl = inventoryViewModel.getBreedImage(breed)
-                if (!imageUrl.isNullOrEmpty()) {
-                    val inventory = Inventory(name = name, breed = breed, owner = owner, phone = phone, symptom = symptom, imagen = imageUrl)
-                    inventoryViewModel.saveInventory(inventory)
-                    Toast.makeText(context, "Artículo guardado!", Toast.LENGTH_SHORT).show()
-                    findNavController().popBackStack()
+
+                val imageToSave = if (!imageUrl.isNullOrEmpty()) {
+                    imageUrl
                 } else {
-                    Toast.makeText(requireContext(), "No se pudo obtener la imagen", Toast.LENGTH_SHORT).show()
+                    // URI de recurso local en drawable
+                    "android.resource://${requireContext().packageName}/drawable/imagen_por_defecto"
                 }
+
+                val inventory = Inventory(
+                    name = name,
+                    breed = breed,
+                    owner = owner,
+                    phone = phone,
+                    symptom = symptom,
+                    imagen = imageToSave
+                )
+
+                inventoryViewModel.saveInventory(inventory)
+                Toast.makeText(context, "Artículo guardado!", Toast.LENGTH_SHORT).show()
+                findNavController().popBackStack()
+
             } catch (e: Exception) {
                 Toast.makeText(requireContext(), "Error al guardar el artículo", Toast.LENGTH_SHORT).show()
                 Log.e("AddItemFragment", "Error: ${e.message}")
             }
         }
     }
+
 
 
     private fun validarDatos() {
