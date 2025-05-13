@@ -6,15 +6,16 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.univalle.dogapp.model.Inventory
-import com.univalle.dogapp.model.ProductModelResponse
+import com.univalle.dogapp.model.BreedsResponse
+import com.univalle.dogapp.model.BreedImageResponse
 import com.univalle.dogapp.repository.InventoryRepository
 import kotlinx.coroutines.launch
+import android.util.Log
 
 
 class InventoryViewModel(application: Application) : AndroidViewModel(application) {
     val context = getApplication<Application>()
     private val inventoryRepository = InventoryRepository(context)
-
 
     private val _listInventory = MutableLiveData<MutableList<Inventory>>()
     val listInventory: LiveData<MutableList<Inventory>> get() = _listInventory
@@ -22,9 +23,31 @@ class InventoryViewModel(application: Application) : AndroidViewModel(applicatio
     private val _progresState = MutableLiveData(false)
     val progresState: LiveData<Boolean> = _progresState
 
-    //para almacenar una lista de productos
-    private val _listProducts = MutableLiveData<MutableList<ProductModelResponse>>()
-    val listProducts: LiveData<MutableList<ProductModelResponse>> = _listProducts
+    private val _sintomas = MutableLiveData<List<String>>()
+    val sintomas: LiveData<List<String>> get() = _sintomas
+
+    private val _breedsList = MutableLiveData<List<String>>()
+    val breedsList: LiveData<List<String>> get() = _breedsList
+
+    private val _breedImage = MutableLiveData<String>()
+    val breedImage: LiveData<String> get() = _breedImage
+
+    private val _error = MutableLiveData<String?>()
+    val error: LiveData<String?> get() = _error
+
+    init {
+        cargarSintomas()
+    }
+
+    private fun cargarSintomas() {
+        val sintomasList = listOf(
+            "Sintomas","Solo duerme", "No come", "Fractura extremidad", "Tiene pulgas",
+            "Tiene garrapatas", "Bota demasiado pelo"
+        )
+        _sintomas.value = sintomasList
+        Log.d("InventoryViewModel", "Síntomas cargados: $sintomasList")
+    }
+
 
     fun saveInventory(inventory: Inventory) {
         viewModelScope.launch {
@@ -77,22 +100,36 @@ class InventoryViewModel(application: Application) : AndroidViewModel(applicatio
         }
     }
 
-    fun getProducts() {
-        viewModelScope.launch {
-            _progresState.value = true
-            try {
-                _listProducts.value = inventoryRepository.getProducts()
-                _progresState.value = false
-
-            } catch (e: Exception) {
-                _progresState.value = false
+    fun getBreeds() {
+        if (_breedsList.value.isNullOrEmpty()) {
+            viewModelScope.launch {
+                try {
+                    val response = inventoryRepository.getBreeds()
+                    response?.let {
+                        _breedsList.postValue(it.message.keys.toList())
+                    } ?: run {
+                        _error.postValue("No se pudo obtener la lista de razas")
+                    }
+                } catch (e: Exception) {
+                    _error.postValue("Error al obtener razas: ${e.message}")
+                }
             }
         }
     }
 
-    fun totalProducto(price: Int, quantity: Int): Double {
-        val total = price * quantity
-        return total.toDouble()
+    suspend fun getBreedImage(breed: String): String? {
+        return try {
+            val response = inventoryRepository.getBreedImage(breed)
+            if (response != null && response.status == "success") {
+                response.message
+            } else {
+                _error.postValue("No se pudo obtener imagen para la raza")
+                null
+            }
+        } catch (e: Exception) {
+            _error.postValue("Error al obtener la imagen: ${e.message}")
+            null
+        }
     }
 }
 

@@ -41,12 +41,12 @@
                     android:background="@drawable/rounded_border"
                     android:clipToOutline="true"
                     android:scaleType="centerCrop"
-                    card_view:layout_constraintEnd_toStartOf="@id/tvName"
+                    card_view:layout_constraintEnd_toStartOf="@id/tvPetName"
                     card_view:layout_constraintStart_toStartOf="parent"
                     card_view:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
-                    android:id="@+id/tvName"
+                    android:id="@+id/tvPetName"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="20dp"
@@ -59,25 +59,26 @@
                     card_view:layout_constraintVertical_bias="0.308" />
 
                 <TextView
-                    android:id="@+id/tvPrice"
+                    android:id="@+id/tvid"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="id"
+                    android:text="#id"
                     android:padding="5dp"
                     android:textSize="16sp"
                     android:textStyle="bold"
+                    android:textColor="@color/pink"
                     card_view:layout_constraintTop_toTopOf="parent"
                     card_view:layout_constraintEnd_toEndOf="parent"/>
 
                 <TextView
-                    android:id="@+id/tvQuantity"
+                    android:id="@+id/tvSymptom"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="No come"
                     android:padding="5dp"
                     android:layout_marginStart="20dp"
                     android:textSize="16sp"
-                    card_view:layout_constraintTop_toBottomOf="@+id/tvName"
+                    card_view:layout_constraintTop_toBottomOf="@+id/tvPetName"
                     card_view:layout_constraintStart_toEndOf="@id/imageCard"
                     card_view:layout_constraintBottom_toBottomOf="@id/contCard"/>
             </androidx.constraintlayout.widget.ConstraintLayout>
