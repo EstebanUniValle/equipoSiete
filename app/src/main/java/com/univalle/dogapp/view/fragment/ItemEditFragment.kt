@@ -37,6 +37,13 @@ class ItemEditFragment : Fragment() {
         dataInventory()
         controladores()
         observerViewModel()
+        configurarRetroceso()
+    }
+
+    private fun configurarRetroceso() {
+        binding.toolbarAdd.setNavigationOnClickListener {
+            findNavController().navigateUp()
+        }
     }
 
     private fun validarCampos() {

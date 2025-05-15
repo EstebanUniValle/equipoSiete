@@ -31,6 +31,13 @@ class ItemDetailsFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         dataInventory()
         controladores()
+        configurarRetroceso()
+    }
+
+    private fun configurarRetroceso() {
+        binding.toolbarAdd.setNavigationOnClickListener {
+            findNavController().navigateUp()
+        }
     }
 
     private fun controladores() {
@@ -51,10 +58,10 @@ class ItemDetailsFragment : Fragment() {
         binding.toolbarTitle.text = receivedInventory.name
         binding.tvBreed.text = receivedInventory.breed
         binding.tvCondition.text = receivedInventory.symptom
-        binding.tvOwner.text = receivedInventory.owner
-        binding.tvPhone.text = receivedInventory.phone
+        binding.tvOwner.text = "Propietario: ${receivedInventory.owner}"
+        binding.tvPhone.text = "Teléfono ${receivedInventory.phone}"
         Glide.with(binding.imagePet.context)
-            .load(receivedInventory.imagen) // Asume que tienes un campo de imagen en Inventory
+            .load(receivedInventory.imagen)
             .centerCrop()
             .into(binding.imagePet)
     }
