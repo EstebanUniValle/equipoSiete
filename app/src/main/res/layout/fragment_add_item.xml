@@ -25,11 +25,11 @@
             android:background="@drawable/toolbar_rounded_border"
             android:paddingTop="15dp"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:navigationIcon="@drawable/iconback"
-            app:title=""
-            />
+            app:title="" />
 
         <TextView
             android:id="@+id/toolbarTitle"

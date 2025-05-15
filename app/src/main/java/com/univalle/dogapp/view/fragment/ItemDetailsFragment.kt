@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import com.bumptech.glide.Glide
 import com.univalle.dogapp.R
 import com.univalle.dogapp.databinding.FragmentItemDetailsBinding
 import com.univalle.dogapp.model.Inventory
@@ -28,12 +29,12 @@ class ItemDetailsFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        //dataInventory()
+        dataInventory()
         controladores()
     }
 
     private fun controladores() {
-        binding.btnDelete.setOnClickListener {
+        binding.fbDelete.setOnClickListener {
             deleteInventory()
         }
 
@@ -44,19 +45,19 @@ class ItemDetailsFragment : Fragment() {
         }
     }
 
-//    private fun dataInventory() {
-//        val receivedBundle = arguments
-//        receivedInventory = receivedBundle?.getSerializable("clave") as Inventory
-//        binding.tvItem.text = "${receivedInventory.name}"
-//        binding.tvPrice.text = "$ ${receivedInventory.price}"
-//        binding.tvQuantity.text = "${receivedInventory.quantity}"
-//        binding.txtTotal.text = "$ ${
-//            inventoryViewModel.totalProducto(
-//                receivedInventory.price,
-//                receivedInventory.quantity
-//            )
-//        }"
-//    }
+    private fun dataInventory() {
+        val receivedBundle = arguments
+        receivedInventory = receivedBundle?.getSerializable("clave") as Inventory
+        binding.toolbarTitle.text = receivedInventory.name
+        binding.tvBreed.text = receivedInventory.breed
+        binding.tvCondition.text = receivedInventory.symptom
+        binding.tvOwner.text = receivedInventory.owner
+        binding.tvPhone.text = receivedInventory.phone
+        Glide.with(binding.imagePet.context)
+            .load(receivedInventory.imagen) // Asume que tienes un campo de imagen en Inventory
+            .centerCrop()
+            .into(binding.imagePet)
+    }
 
     private fun deleteInventory(){
         inventoryViewModel.deleteInventory(receivedInventory)

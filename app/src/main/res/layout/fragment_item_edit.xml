@@ -13,73 +13,170 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/backgroundColor"
-        android:padding="20dp"
-        tools:context=".view.fragment.AddItemFragment">
+        android:background="@color/white"
+        tools:context=".view.fragment.AddItemFragment"
+        android:paddingEnd="20dp"
+        android:paddingStart="20dp">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbarAdd"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:background="@drawable/toolbar_rounded_border"
+            android:paddingTop="15dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:navigationIcon="@drawable/iconback"
+            app:title="" />
 
         <TextView
-            android:id="@+id/tvNameEdit"
+            android:id="@+id/toolbarTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Editar Artículo"
-            android:textSize="25sp"
-            app:layout_constraintTop_toTopOf="parent"
+            android:text="Editar Cita"
+            android:textColor="@color/white"
+            android:textSize="30sp"
+            android:textStyle="bold"
+            app:layout_constraintTop_toTopOf="@id/toolbarAdd"
+            app:layout_constraintBottom_toBottomOf="@id/toolbarAdd"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"/>
 
-        <EditText
-            android:id="@+id/etName"
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/petName"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:hint="@string/petNameHint"
+            app:boxBackgroundMode="outline"
+            app:boxStrokeColor="@color/purple"
+            app:boxStrokeWidth="1dp"
+            app:boxStrokeWidthFocused="2dp"
+            app:layout_constraintTop_toBottomOf="@id/toolbarAdd"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/petBreed">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/edPetName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="text"
+                style="@style/MyTextInputPetName"
+                android:maxLength="15"
+                android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz "
+                android:textColor="@color/black"
+                android:textColorHint="@color/Grey" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/petBreed"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:layout_gravity="center"
-            android:hint="Nombre artículo"
-            android:background="@drawable/bg_redondo"
-            android:padding="12dp"
-            android:inputType="text"
-            android:maxLength="10"
-            app:layout_constraintTop_toBottomOf="@id/tvNameEdit"
+            android:layout_marginTop="16dp"
+            android:hint="@string/petBreedHint"
+            android:completionThreshold="2"
+            app:boxBackgroundMode="outline"
+            app:boxStrokeColor="@color/purple"
+            app:boxStrokeWidth="1dp"
+            app:boxStrokeWidthFocused="2dp"
+            app:layout_constraintTop_toBottomOf="@id/petName"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"/>
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/ownerName">
 
-        <EditText
-            android:id="@+id/etPrice"
-            android:layout_width="match_parent"
+            <AutoCompleteTextView
+                android:id="@+id/edPetBreed"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:inputType="text"
+                android:paddingStart="10dp"
+                style="@style/MyTextInputPetName"
+                android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz "
+                android:maxLength="15"
+                android:textColor="@color/black"
+                android:textColorHint="@color/Grey"
+                android:popupBackground="@drawable/dropdown_popup_background"
+                android:dropDownHeight="wrap_content"
+                android:dropDownVerticalOffset="8dp" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/ownerName"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:layout_gravity="center"
-            android:hint="Precio"
-            android:background="@drawable/bg_redondo"
-            android:padding="12dp"
-            android:inputType="number"
-            app:layout_constraintTop_toBottomOf="@id/etName"
+            android:layout_marginTop="16dp"
+            android:hint="@string/ownerNameHint"
+            app:boxBackgroundMode="outline"
+            app:boxStrokeColor="@color/purple"
+            app:boxStrokeWidth="1dp"
+            app:boxStrokeWidthFocused="2dp"
+            app:layout_constraintTop_toBottomOf="@id/petBreed"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"/>
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/phone">
 
-        <EditText
-            android:id="@+id/etQuantity"
-            android:layout_width="match_parent"
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/edOwnerName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="text"
+                style="@style/MyTextInputPetName"
+                android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz "
+                android:maxLength="30"
+                android:textColor="@color/black"
+                android:textColorHint="@color/Grey" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/phone"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:layout_gravity="center"
-            android:hint="Cantidad"
-            android:background="@drawable/bg_redondo"
-            android:padding="12dp"
-            android:inputType="number"
-            app:layout_constraintTop_toBottomOf="@id/etPrice"
+            android:layout_marginTop="16dp"
+            android:hint="@string/phoneHint"
+            app:boxBackgroundMode="outline"
+            app:boxStrokeColor="@color/purple"
+            app:boxStrokeWidthFocused="2dp"
+            app:layout_constraintTop_toBottomOf="@id/ownerName"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"/>
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/phone">
 
-        <Button
-            android:id="@+id/btnEdit"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="30dp"
-            android:text="Editar"
-            app:layout_constraintTop_toBottomOf="@+id/etQuantity"
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/edPhone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="number"
+                style="@style/MyTextInputPetName"
+                android:maxLength="10"
+                android:textColor="@color/black"
+                android:textColorHint="@color/Grey" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnEditInventory"
+            android:layout_width="180dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="28dp"
+            android:layout_marginStart="100dp"
+            android:enabled="false"
+            android:text="Editar Cita"
+            android:textStyle="bold"
+            android:textColor="@color/btn_save_inventory_text"
+            app:icon="@drawable/ic_edit"
+            app:iconGravity="textStart"
+            app:iconPadding="8dp"
+            app:iconTint="@color/black"
+            app:iconSize="30dp"
+            app:backgroundTint="@color/pink"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"/>
-
-
+            app:layout_constraintTop_toBottomOf="@id/phone" />
     </androidx.constraintlayout.widget.ConstraintLayout>
+
 </layout>
