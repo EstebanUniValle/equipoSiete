@@ -27,7 +27,7 @@ class InventoryViewHolder(
         // Cuando se haga clic en el CardView, se navegará a otro fragmento
         binding.cvInventory.setOnClickListener {
             val bundle = Bundle()
-            bundle.putSerializable("inventory", inventory)
+            bundle.putSerializable("clave", inventory)
             navController.navigate(R.id.action_homeInventoryFragment_to_itemDetailsFragment, bundle)
         }
     }
