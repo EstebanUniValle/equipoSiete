@@ -55,6 +55,7 @@ class ItemDetailsFragment : Fragment() {
     private fun dataInventory() {
         val receivedBundle = arguments
         receivedInventory = receivedBundle?.getSerializable("clave") as Inventory
+        binding.tvId.text = "#${receivedInventory.id.toString()}"
         binding.toolbarTitle.text = receivedInventory.name
         binding.tvBreed.text = receivedInventory.breed
         binding.tvCondition.text = receivedInventory.symptom
