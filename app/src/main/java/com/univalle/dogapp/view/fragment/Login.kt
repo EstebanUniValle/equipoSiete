@@ -69,9 +69,9 @@ class LoginFragment : Fragment() {
             .build()
 
         // 🎯 Acciona al hacer clic en la animación
-        binding.animationView.setOnClickListener {
-            biometricPrompt.authenticate(promptInfo)
-        }
+//        binding.animationView.setOnClickListener {
+//            biometricPrompt.authenticate(promptInfo)
+//        }
     }
 
     override fun onDestroyView() {

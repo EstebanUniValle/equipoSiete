@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/login">
+    app:startDestination="@id/splashActivity">
     <fragment
         android:id="@+id/login"
         android:name="com.univalle.dogapp.view.fragment.LoginFragment"
@@ -51,6 +51,15 @@
             app:destination="@id/homeInventoryFragment"
             app:popUpTo="@+id/homeInventoryFragment"
             app:popUpToInclusive="true"/>
+    </fragment>
+    <fragment
+        android:id="@+id/splashActivity"
+        android:name="com.univalle.dogapp.view.fragment.SplashFragment"
+        android:label="fragment_splash_activity"
+        tools:layout="@layout/fragment_splash_activity" >
+        <action
+            android:id="@+id/action_splashActivity_to_login"
+            app:destination="@id/login" />
     </fragment>
 
 </navigation>
