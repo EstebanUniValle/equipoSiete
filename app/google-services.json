@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "8484760488",
+    "project_id": "equipo-siete",
+    "storage_bucket": "equipo-siete.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:8484760488:android:bff693c75e29ccb3bb8b9d",
+        "android_client_info": {
+          "package_name": "com.univalle.dogapp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDnTTm7P489wdp9bNYh_tfqLWLIsBk87XY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
