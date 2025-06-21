@@ -3,6 +3,7 @@ plugins {
     alias(libs.plugins.kotlin.android)
     id("com.google.devtools.ksp")
     id ("kotlin-kapt")
+    id("com.google.gms.google-services")
 }
 
 android {
@@ -91,12 +92,6 @@ dependencies {
     // LiveData para observar cambios en datos
     implementation(libs.androidx.lifecycle.livedata.ktx)
 
-    // Room (base de datos local)
-    implementation(libs.androidx.room.runtime)
-    implementation(libs.androidx.room.ktx)
-    // Procesador de anotaciones de Room (con KSP)
-    ksp(libs.androidx.room.compiler)
-
     // Botón de acción flotante personalizado (si no es parte de Material)
     implementation(libs.floatingactionbutton)
 
@@ -107,4 +102,12 @@ dependencies {
 
     // Carga y visualización eficiente de imágenes
     implementation(libs.glide)
+
+    //firestore:
+    implementation(platform("com.google.firebase:firebase-bom:33.15.0"))
+    implementation(libs.firebase.firestore)
+
+    //authentication
+    implementation(libs.firebase.auth.ktx)
+
 }
