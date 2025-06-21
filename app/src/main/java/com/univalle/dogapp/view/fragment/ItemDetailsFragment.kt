@@ -18,6 +18,30 @@ class ItemDetailsFragment : Fragment() {
     private val inventoryViewModel: InventoryViewModel by viewModels()
     private lateinit var receivedInventory: Inventory
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        dataInventory()
+        controladores()
+        configurarRetroceso()
+        observerViewModel()
+    }
+
+    private fun observerViewModel() {
+        inventoryViewModel.deleted.observe(viewLifecycleOwner) { deleted ->
+            if (deleted == true) {
+                inventoryViewModel.getListInventory()
+                findNavController().popBackStack()
+            }
+        }
+        inventoryViewModel.saved.observe(viewLifecycleOwner) { wasSaved ->
+            if (wasSaved == true) {
+                findNavController().navigateUp()
+            }
+        }
+
+    }
+
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -25,13 +49,6 @@ class ItemDetailsFragment : Fragment() {
         binding = FragmentItemDetailsBinding.inflate(inflater)
         binding.lifecycleOwner = this
         return binding.root
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        dataInventory()
-        controladores()
-        configurarRetroceso()
     }
 
     private fun configurarRetroceso() {
@@ -69,8 +86,7 @@ class ItemDetailsFragment : Fragment() {
 
     private fun deleteInventory(){
         inventoryViewModel.deleteInventory(receivedInventory)
-        inventoryViewModel.getListInventory()
-        findNavController().popBackStack()
     }
+
 
 }

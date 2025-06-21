@@ -1,7 +1,6 @@
 package com.univalle.dogapp.repository
 import android.content.Context
-import com.univalle.dogapp.data.InventoryDB
-import com.univalle.dogapp.data.InventoryDao
+import com.univalle.dogapp.data.FirebaseInventoryDao
 import com.univalle.dogapp.model.Inventory
 import com.univalle.dogapp.model.BreedsResponse
 import com.univalle.dogapp.model.BreedImageResponse
@@ -12,7 +11,7 @@ import kotlinx.coroutines.withContext
 import android.util.Log
 
 class InventoryRepository(val context: Context){
-    private var inventoryDao:InventoryDao = InventoryDB.getDatabase(context).inventoryDao()
+    private var inventoryDao = FirebaseInventoryDao()
     private var apiService: ApiService = ApiUtils.getApiService()
      suspend fun saveInventory(inventory:Inventory){
          withContext(Dispatchers.IO){

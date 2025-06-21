@@ -11,6 +11,7 @@ import com.univalle.dogapp.model.BreedImageResponse
 import com.univalle.dogapp.repository.InventoryRepository
 import kotlinx.coroutines.launch
 import android.util.Log
+import kotlinx.coroutines.delay
 
 
 class InventoryViewModel(application: Application) : AndroidViewModel(application) {
@@ -49,14 +50,18 @@ class InventoryViewModel(application: Application) : AndroidViewModel(applicatio
     }
 
 
+    private val _saved = MutableLiveData<Boolean>()
+    val saved: LiveData<Boolean> get() = _saved
+
     fun saveInventory(inventory: Inventory) {
         viewModelScope.launch {
-
             _progresState.value = true
             try {
                 inventoryRepository.saveInventory(inventory)
-                _progresState.value = false
+                _saved.value = true // Notificar éxito
             } catch (e: Exception) {
+                Log.e("InventoryViewModel", "Error al guardar: ${e.message}")
+            } finally {
                 _progresState.value = false
             }
         }
@@ -75,18 +80,23 @@ class InventoryViewModel(application: Application) : AndroidViewModel(applicatio
         }
     }
 
+    private val _deleted = MutableLiveData<Boolean>()
+    val deleted: LiveData<Boolean> get() = _deleted
+
     fun deleteInventory(inventory: Inventory) {
         viewModelScope.launch {
             _progresState.value = true
             try {
                 inventoryRepository.deleteInventory(inventory)
-                _progresState.value = false
+                _deleted.value = true // Notifica éxito
             } catch (e: Exception) {
+                Log.e("InventoryViewModel", "Error al eliminar: ${e.message}")
+            } finally {
                 _progresState.value = false
             }
-
         }
-    }
+}
+
 
     fun updateInventory(inventory: Inventory) {
         viewModelScope.launch {
@@ -95,10 +105,12 @@ class InventoryViewModel(application: Application) : AndroidViewModel(applicatio
                 inventoryRepository.updateRepositoy(inventory)
                 _progresState.value = false
             } catch (e: Exception) {
+                Log.e("InventoryViewModel", "Error al actualizar: ${e.message}")
                 _progresState.value = false
             }
         }
     }
+
 
     fun getBreeds() {
         if (_breedsList.value.isNullOrEmpty()) {
