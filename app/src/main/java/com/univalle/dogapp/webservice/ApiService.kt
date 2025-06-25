@@ -4,10 +4,8 @@ import com.univalle.dogapp.model.BreedsResponse
 import com.univalle.dogapp.model.BreedImageResponse
 import com.univalle.dogapp.utils.Constants.END_POINT_BREEDS
 import com.univalle.dogapp.utils.Constants.END_POINT_IMAGES
-//import com.univalle.dogapp.utils.Constants.END_POINT_IMAGES
 import retrofit2.http.GET
 import retrofit2.http.Path
-import com.univalle.dogapp.webservice.ApiService
 
 interface ApiService {
 

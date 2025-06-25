@@ -12,6 +12,9 @@ import com.univalle.dogapp.R
 import com.univalle.dogapp.databinding.FragmentHomeInventoryBinding
 import com.univalle.dogapp.view.adapter.InventoryAdapter
 import com.univalle.dogapp.viewmodel.InventoryViewModel
+import dagger.hilt.android.AndroidEntryPoint
+
+@AndroidEntryPoint
 class HomeInventoryFragment : Fragment() {
     private lateinit var binding: FragmentHomeInventoryBinding
     private val inventoryViewModel: InventoryViewModel by viewModels()

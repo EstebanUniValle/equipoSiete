@@ -10,13 +10,16 @@ import com.univalle.dogapp.model.BreedsResponse
 import com.univalle.dogapp.model.BreedImageResponse
 import com.univalle.dogapp.repository.InventoryRepository
 import kotlinx.coroutines.launch
+import dagger.hilt.android.lifecycle.HiltViewModel
+import androidx.lifecycle.ViewModel
 import android.util.Log
 import kotlinx.coroutines.delay
+import javax.inject.Inject
 
-
-class InventoryViewModel(application: Application) : AndroidViewModel(application) {
-    val context = getApplication<Application>()
-    private val inventoryRepository = InventoryRepository(context)
+@HiltViewModel
+class InventoryViewModel @Inject constructor(
+    private val inventoryRepository : InventoryRepository
+    ): ViewModel() {
 
     private val _listInventory = MutableLiveData<MutableList<Inventory>>()
     val listInventory: LiveData<MutableList<Inventory>> get() = _listInventory

@@ -8,7 +8,9 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.NavOptions
 import com.univalle.dogapp.R
 import androidx.navigation.fragment.findNavController
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class SplashFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

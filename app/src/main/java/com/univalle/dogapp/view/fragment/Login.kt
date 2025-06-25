@@ -14,7 +14,9 @@ import androidx.navigation.fragment.findNavController
 import com.univalle.dogapp.R
 import com.univalle.dogapp.databinding.FragmentLoginBinding
 import com.univalle.dogapp.viewmodel.LoginViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class LoginFragment : Fragment() {
 
     private var _binding: FragmentLoginBinding? = null

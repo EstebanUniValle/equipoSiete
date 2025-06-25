@@ -5,14 +5,17 @@ import com.univalle.dogapp.model.Inventory
 import com.univalle.dogapp.model.BreedsResponse
 import com.univalle.dogapp.model.BreedImageResponse
 import com.univalle.dogapp.webservice.ApiService
-import com.univalle.dogapp.webservice.ApiUtils
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import android.util.Log
+import javax.inject.Inject
 
-class InventoryRepository(val context: Context){
-    private var inventoryDao = FirebaseInventoryDao()
-    private var apiService: ApiService = ApiUtils.getApiService()
+
+class InventoryRepository @Inject constructor(
+    private var inventoryDao: FirebaseInventoryDao,
+    private var apiService: ApiService
+){
+
      suspend fun saveInventory(inventory:Inventory){
          withContext(Dispatchers.IO){
              inventoryDao.saveInventory(inventory)

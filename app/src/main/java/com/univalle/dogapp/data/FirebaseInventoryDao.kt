@@ -5,16 +5,20 @@ import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ktx.toObject
 import com.univalle.dogapp.model.Inventory
 import kotlinx.coroutines.tasks.await
+import javax.inject.Inject
 
-class FirebaseInventoryDao {
-    private val db = FirebaseFirestore.getInstance()
-    private val inventoryCollection = db.collection("inventory")
+
+class FirebaseInventoryDao @Inject constructor(
+    private val firestore: FirebaseFirestore
+) {
+
+    private val inventoryCollection = firestore.collection("inventory")
 
     suspend fun saveInventory(inventory: Inventory) {
         try {
-            val metadataRef = db.collection("metadata").document("inventoryCounter")
+            val metadataRef = firestore.collection("metadata").document("inventoryCounter")
 
-            db.runTransaction { transaction ->
+            firestore.runTransaction { transaction ->
                 val snapshot = transaction.get(metadataRef)
                 val currentCount = snapshot.getLong("count") ?: 0
                 val newCount = currentCount + 1

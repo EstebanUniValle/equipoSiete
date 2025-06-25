@@ -5,9 +5,11 @@ import com.univalle.dogapp.model.UserRequest
 import com.univalle.dogapp.model.UserResponse
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
+import javax.inject.Inject
 
-class LoginRepository {
-    private val firebaseAuth = FirebaseAuth.getInstance()
+class LoginRepository @Inject constructor(
+    private val firebaseAuth : FirebaseAuth
+){
     suspend fun registerUser(userRequest: UserRequest, userResponse: (UserResponse) -> Unit) {
         withContext(Dispatchers.IO){
             try {
